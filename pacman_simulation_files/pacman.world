@@ -1,0 +1,180 @@
+include "pioneer.inc"
+include "map.inc"
+include "sick.inc"
+
+# time to pause (in GUI mode) or quit (in headless mode (-g)) the simulation
+quit_time 3600 # 1 hour of simulated time
+
+paused 0
+resolution 0.2
+interval_sim 80
+interval_real 80
+
+# configure the GUI window
+window
+(
+  size [ 500.000 500.000 ] # in pixels
+  scale 25.000   # pixels per meter
+  center [ 10 0]
+  rotate [ 0 0]
+  			
+  show_data 1              # 1=on 0=off
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "Pac-Man"
+  size [20.000 20.000 0.800]
+  pose [0 0 0 0]
+  bitmap "bitmaps/pacmanlast.png"
+)
+
+define pill model
+(
+	
+	bitmap "bitmaps/circle1.png"
+	size [0.150 0.150 0.150]
+	color "yellow"
+)
+define powerPill model
+(
+    bitmap "bitmaps/circle1.png"
+    size [0.150 0.150 0.150]
+    color "red"
+)
+
+pioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "pacman"
+  color "yellow"
+ pose [ -0.5 -2.5 0 180 ]
+  sicklaser( 
+	pose [0.2 0 0 0]
+	color "black"  
+      #ctrl "lasernoise"  # uncomment this line to run a laser noise generator
+  )
+ 
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+
+pioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "ghostRed"
+  color "red"
+ pose [ -0.5 1.5 0 180 ]
+  sicklaser( 
+	pose [0.2 0 0 0]
+	color "black"  
+      #ctrl "lasernoise"  # uncomment this line to run a laser noise generator
+  )
+ 
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+pioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "ghostBlue"
+  color "blue"
+ pose [ 9.5 9.5 0 90 ]
+  sicklaser( 
+	pose [0.2 0 0 0]
+	color "black"  
+      #ctrl "lasernoise"  # uncomment this line to run a laser noise generator
+  )
+ 
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+pioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "ghostPink"
+  color "pink"
+ pose [ -9.5 9.5 0 90 ]
+  sicklaser( 
+	pose [0.2 0 0 0]
+	color "black"  
+      #ctrl "lasernoise"  # uncomment this line to run a laser noise generator
+  )
+ 
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+
+pioneer2dx
+(		  
+  # can refer to the robot by this name
+  name "ghostOrange"
+  color "orange"
+ pose [ -0.5 9.5 0 90 ]
+  sicklaser( 
+	pose [0.2 0 0 0]
+	color "black"  
+      #ctrl "lasernoise"  # uncomment this line to run a laser noise generator
+  )
+ 
+  # report error-free position in world coordinates
+  localization "gps"
+  localization_origin [ 0 0 0 0 ]
+)
+
+
+
+powerPill(name "powerPill1" pose [-9.5 8.5 0 0])
+powerPill(name "powerPill2" pose [ 9.5 8.5 0 0])
+powerPill(name "powerPill3" pose [-9.5 -8.5 0 0])
+powerPill(name "powerPill4" pose [ 9.5 -8.5 0 0])
+pill(name "pill0" pose [9.5 -9.5 0 0])
+pill(name "pill1" pose [9.5 -8.5 0 0])
+pill(name "pill2" pose [9.5 -7.5 0 0])
+pill(name "pill3" pose [9.5 -6.5 0 0])
+pill(name "pill4" pose [9.5 -5.5 0 0])
+pill(name "pill5" pose [9.5 -4.5 0 0])
+pill(name "pill80" pose [3.5 2.5 0 0])
+pill(name "pill81" pose [3.5 3.5 0 0])
+pill(name "pill83" pose [3.5 5.5 0 0])
+pill(name "pill84" pose [3.5 6.5 0 0])
+pill(name "pill85" pose [3.5 7.5 0 0])
+pill(name "pill139" pose [-3.5 -4.5 0 0])
+pill(name "pill144" pose [3.5 -4.5 0 0])
+pill(name "pill165" pose [-0.5 -6.5 0 0])
+pill(name "pill103" pose [-3.5 0.5 0 0])
+pill(name "pill145" pose [-4.5 5.5 0 0])
+pill(name "pill149" pose [-4.5 9.5 0 0])
+pill(name "pill150" pose [-5.5 3.5 0 0])
+pill(name "pill151" pose [-5.5 -2.5 0 0])
+pill(name "pill152" pose [-5.5  2.5 0 0])
+pill(name "pill153" pose [-5.5 	0.5 0 0])
+pill(name "pill154" pose [-5.5 -6.5 0 0])
+pill(name "pill190" pose [-9.5 -7.5 0 0])
+pill(name "pill191" pose [-9.5 -6.5 0 0])
+pill(name "pill192" pose [-9.5 -5.5 0 0])
+pill(name "pill193" pose [-9.5 -4.5 0 0])
+pill(name "pill44" pose [5.5 6.5 0 0])
+pill(name "pill45" pose [5.5 -6.5 0 0])
+pill(name "pill46" pose [5.5 2.5 0 0])
+pill(name "pill47" pose [5.5 3.5 0 0])
+pill(name "pill48" pose [5.5 -4.5 0 0])
+pill(name "pill49" pose [5.5 0.5 0 0])
+pill(name "pill50" pose [-9.5 4.5 0 0])
+pill(name "pill51" pose [9.5 4.5 0 0])
+
+
+
+
+
+
+
+
+
+
+
